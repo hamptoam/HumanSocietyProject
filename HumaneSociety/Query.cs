@@ -196,8 +196,14 @@ namespace HumaneSociety
         
         internal static void RemoveAnimal(Animal animal)
         {
-          
-        }
+            {
+                HumanSocietyDataContext MyTable = new HumanSocietyDataContext();
+                var animalShotsToDelete = MyTable.AnimalShots.Where(a => a.Animal == animal.ID);
+                foreach (AnimalShot shot in animalShotsToDelete)
+                {
+                    MyTable.AnimalShots.DeleteOnSubmit(shot);
+                }
+            }
 
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
@@ -213,12 +219,17 @@ namespace HumaneSociety
 
         internal static Room GetRoom(int animalId)
         {
-            throw new NotImplementedException();
+            {
+                var db = new HumanSocietyDataContext();
+                var animalResult = db.Rooms.Where(a => a.AnimalId == animalId).FirstOrDefault();
+                return animalResult;
+            }
         }
 
         internal static int GetDietPlanId(string dietPlanName)
         {
-            throw new NotImplementedException();
+                var db = new HumaneSocietyDataContext();
+                var newDietPlan = db.DietPlan.Where(n => n.dietPlanName == dietPlanName);
         }
 
         // TODO: Adoption CRUD Operations
