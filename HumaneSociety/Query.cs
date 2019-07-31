@@ -186,12 +186,17 @@ namespace HumaneSociety
 
         internal static void UpdateAnimal(int animalId, Dictionary<int, string> updates)
         {
-            throw new NotImplementedException();
+            var db = new HumanSocietyDataContext();
+            var newInfo = db.Animals.Where(n => n.AnimalId == animalId);
+                 foreach (var n in newInfo)
+            {
+                db.SubmitChanges();
+            }
         }
-
+        
         internal static void RemoveAnimal(Animal animal)
         {
-            throw new NotImplementedException();
+          
         }
 
         // TODO: Animal Multi-Trait Search
