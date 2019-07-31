@@ -166,10 +166,13 @@ namespace HumaneSociety
         // TODO: Allow any of the CRUD operations to occur here
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
-            throw new NotImplementedException();
+            Func<Employee, Employee> queryMethod;
+
         }
 
         // TODO: Animal CRUD Operations
+
+
         internal static void AddAnimal(Animal animal)
         {
             HumanSocietyDataContext MyTable = new HumanSocietyDataContext();
@@ -208,7 +211,9 @@ namespace HumaneSociety
 
         internal static Room GetRoom(int animalId)
         {
-            throw new NotImplementedException();
+            var db = new HumanSocietyDataContext();
+            var animalResult = db.Rooms.Where(a => a.AnimalId == animalId).FirstOrDefault();
+            return animalResult;
         }
 
         internal static int GetDietPlanId(string dietPlanName)
@@ -220,6 +225,8 @@ namespace HumaneSociety
         internal static void Adopt(Animal animal, Client client)
         {
             throw new NotImplementedException();
+
+
         }
 
         internal static IQueryable<Adoption> GetPendingAdoptions()
@@ -230,6 +237,8 @@ namespace HumaneSociety
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
             throw new NotImplementedException();
+
+            
         }
 
         internal static void RemoveAdoption(int animalId, int clientId)
@@ -249,6 +258,16 @@ namespace HumaneSociety
             var shot = new Shot();
 
 
+        }
+        public static void AddNewShot(string name)
+        {
+            var db = new HumanSocietyDataContext();
+            var shot = new Shot();
+            shot.name = name;
+
+            db.Shots.InsertOnSubmit(shot);
+
+            db.SubmitChanges();
         }
     }
 }
