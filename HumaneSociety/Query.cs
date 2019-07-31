@@ -199,7 +199,14 @@ namespace HumaneSociety
 
         internal static void RemoveAnimal(Animal animal)
         {
-            throw new NotImplementedException();
+            HumanSocietyDataContext MyTable = new HumanSocietyDataContext();
+
+            var animalShotsToDelete = MyTable.AnimalShots.Where(a => a.Animal == animal.ID);
+            foreach (AnimalShot shot in animalShotsToDelete)
+            {
+                MyTable.AnimalShots.DeleteOnSubmit(shot);
+            }
+
         }
 
         // TODO: Animal Multi-Trait Search
