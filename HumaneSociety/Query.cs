@@ -172,9 +172,11 @@ namespace HumaneSociety
         // TODO: Animal CRUD Operations
         internal static void AddAnimal(Animal animal)
         {
-            throw new NotImplementedException();
+            HumanSocietyDataContext MyTable = new HumanSocietyDataContext();
+            MyTable.Animals.InsertOnSubmit(animal);
+            MyTable.SubmitChanges();
         }
-
+        
         internal static Animal GetAnimalByID(int id)
         {
             throw new NotImplementedException();
