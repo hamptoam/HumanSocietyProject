@@ -199,16 +199,17 @@ namespace HumaneSociety
             }
         }
 
-/*
-        internal static Animal RemoveAnimal(int AnimalId)
+
+        internal static bool RemoveAnimal(int AnimalId)
         {
             HumanSocietyDataContext MyTable = new HumanSocietyDataContext();
+
 
       
 
         }
         
-*/
+
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
@@ -234,23 +235,29 @@ namespace HumaneSociety
 
         }
 
-        internal static int GetDietPlanId(string dietPlanName)
+        internal static int GetDietPlanId(int DietPlanId)
         {
-            throw new NotImplementedException();
+
+            var db = new HumanSocietyDataContext();
+            var animalResult = db.DietPlans.Where(a => a.DietPlanId == DietPlanId).FirstOrDefault();
+            return DietPlanId;
+
         }
 
         // TODO: Adoption CRUD Operations
+
+            /*
         internal static void Adopt(Animal animal, Client client)
         {
-            var adoption = new Adoption();
-            Adoption.animal = animal.ID;
-            Adoption.client = client.ClientId;
             var db = new HumanSocietyDataContext();
-            db.Adoptions.InsertOnSubmit(adoption);
-            db.SubmitChanges();
+            var ad = new Adoption();
 
+            animal = GetAnimalByID();
 
+            var animalResult = db.Rooms.Where(a => a.AnimalId == AnimalId).FirstOrDefault();
         }
+
+        */
 
         internal static IQueryable<Adoption> GetPendingAdoptions()
         {
@@ -259,7 +266,9 @@ namespace HumaneSociety
 
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
-            throw new NotImplementedException();
+
+
+           /* RemoveAnimal(); */
 
             
         }
