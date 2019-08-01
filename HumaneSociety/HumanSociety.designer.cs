@@ -182,7 +182,9 @@ namespace HumaneSociety
 				return this.GetTable<Shot>();
 			}
 		}
-	}
+
+       
+    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.USStates")]
 	public partial class USState : INotifyPropertyChanging, INotifyPropertyChanged
@@ -767,11 +769,8 @@ namespace HumaneSociety
 				}
 			}
 		}
-
-        public static Animal animal { get; internal set; }
-        public static object client { get; internal set; }
-
-        public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
 		
@@ -1267,11 +1266,8 @@ namespace HumaneSociety
 				}
 			}
 		}
-
-        public int id { get; internal set; }
-        public Animal ID { get; internal set; }
-
-        public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
 		
@@ -2467,10 +2463,9 @@ namespace HumaneSociety
 		private string _Name;
 		
 		private EntitySet<AnimalShot> _AnimalShots;
-        internal string name;
-
-        #region Extensibility Method Definitions
-        partial void OnLoaded();
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
     partial void OnShotIdChanging(int value);
