@@ -1266,6 +1266,7 @@ namespace HumaneSociety
 		}
 
         public int id { get; internal set; }
+        public Animal ID { get; internal set; }
 
         public event PropertyChangingEventHandler PropertyChanging;
 		
@@ -2463,9 +2464,10 @@ namespace HumaneSociety
 		private string _Name;
 		
 		private EntitySet<AnimalShot> _AnimalShots;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
+        internal string name;
+
+        #region Extensibility Method Definitions
+        partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
     partial void OnShotIdChanging(int value);

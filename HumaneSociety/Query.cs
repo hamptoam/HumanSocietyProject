@@ -236,7 +236,12 @@ namespace HumaneSociety
         // TODO: Adoption CRUD Operations
         internal static void Adopt(Animal animal, Client client)
         {
-            throw new NotImplementedException();
+            var adoption = new Adoption();
+            Adoption.animal = animal.ID;
+            Adoption.client = client.ClientId;
+            var db = new HumanSocietyDataContext();
+            db.Adoptions.InsertOnSubmit(adoption);
+            db.SubmitChanges();
 
 
         }
