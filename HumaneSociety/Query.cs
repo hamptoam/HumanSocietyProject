@@ -167,7 +167,14 @@ namespace HumaneSociety
         // TODO: Allow any of the CRUD operations to occur here
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
+<<<<<<< HEAD
            
+=======
+<<<<<<< HEAD
+            throw new NotImplementedException();
+=======
+            Func<Employee, Employee> queryMethod;
+>>>>>>> 6bfa1545da56b0fc4a8ce7165ced52dd6b20c5c4
             switch (crudOperation)
             {
                 case "read":
@@ -184,6 +191,7 @@ namespace HumaneSociety
             }
 
 
+>>>>>>> 8617abdb7120349cf3630db011386211a815718a
 
 
         }
@@ -280,12 +288,15 @@ namespace HumaneSociety
         {
             var db = new HumanSocietyDataContext();
             var newInfo = db.Animals.Where(n => n.AnimalId == animalId);
-            foreach (var n in newInfo)
+
+                 foreach (var n in newInfo)
+
             {
                 db.SubmitChanges();
             }
         }
 
+<<<<<<< HEAD
         internal static void RemoveAnimal(Animal animal)
         {
             HumanSocietyDataContext MyTable = new HumanSocietyDataContext();
@@ -294,8 +305,31 @@ namespace HumaneSociety
             MyTable.Animals.DeleteOnSubmit(animal);
 
         }
+=======
+<<<<<<< HEAD
+
+        internal static void RemoveAnimal(Animal animal)
+        {
+            {
+                HumanSocietyDataContext MyTable = new HumanSocietyDataContext();
+
+            }
+        }     // TODO: Animal Multi-Trait Search
+=======
+
+        internal static bool RemoveAnimal(int AnimalId)
+        {
+            HumanSocietyDataContext MyTable = new HumanSocietyDataContext();
+
+
+      
+
+        }
+        
+>>>>>>> 6bfa1545da56b0fc4a8ce7165ced52dd6b20c5c4
 
         // TODO: Animal Multi-Trait Search
+>>>>>>> 8617abdb7120349cf3630db011386211a815718a
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
             throw new NotImplementedException();
@@ -309,28 +343,63 @@ namespace HumaneSociety
 
         internal static Room GetRoom(int animalId)
         {
+<<<<<<< HEAD
             var db = new HumanSocietyDataContext();
             var animalResult = db.Rooms.Where(a => a.AnimalId == animalId).FirstOrDefault();
             return animalResult;
+=======
+
+            {
+                var db = new HumanSocietyDataContext();
+                var animalResult = db.Rooms.Where(a => a.AnimalId == animalId).FirstOrDefault();
+                return animalResult;
+            }
+
+>>>>>>> 6bfa1545da56b0fc4a8ce7165ced52dd6b20c5c4
         }
 
-        internal static int GetDietPlanId(string dietPlanName)
+<<<<<<< HEAD
+        internal static Animal GetDietPlanId(string dietPlanName)
         {
             throw new NotImplementedException();
+            //var db = new HumanSocietyDataContext();
+            //var newDietPlan = db.DietPlan.Where(n => n.dietPlanName == dietPlanName).FirstOrDefault();
+            //return newDietPlan;
+=======
+        internal static int GetDietPlanId(int DietPlanId)
+        {
+
+            var db = new HumanSocietyDataContext();
+            var animalResult = db.DietPlans.Where(a => a.DietPlanId == DietPlanId).FirstOrDefault();
+            return DietPlanId;
+
+>>>>>>> 8617abdb7120349cf3630db011386211a815718a
         }
 
         // TODO: Adoption CRUD Operations
+
+            /*
         internal static void Adopt(Animal animal, Client client)
         {
-            var adoption = new Adoption();
-            Adoption.animal = animal.ID;
-            Adoption.client = client.ClientId;
+<<<<<<< HEAD
+
+            //var adoption = new Adoption();
+            //Adoption.animal = animal.ID;
+            //Adoption.client = client.ClientId;
+            //var db = new HumanSocietyDataContext();
+            //db.Adoptions.InsertOnSubmit(adoption);
+            //db.SubmitChanges();
+=======
             var db = new HumanSocietyDataContext();
-            db.Adoptions.InsertOnSubmit(adoption);
-            db.SubmitChanges();
+            var ad = new Adoption();
+>>>>>>> 8617abdb7120349cf3630db011386211a815718a
 
+            animal = GetAnimalByID();
 
+            var animalResult = db.Rooms.Where(a => a.AnimalId == AnimalId).FirstOrDefault();
         }
+
+        */
 
         internal static IQueryable<Adoption> GetPendingAdoptions()
         {
@@ -340,11 +409,17 @@ namespace HumaneSociety
 
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
+<<<<<<< HEAD
             var db = new HumanSocietyDataContext();
             Adoption adoptionResult = db.Adoptions.Where(c => c.AdoptionFee == adoption.AnimalId).First();
            
             db.SubmitChanges();
 
+=======
+
+
+           /* RemoveAnimal(); */
+>>>>>>> 6bfa1545da56b0fc4a8ce7165ced52dd6b20c5c4
 
         }
 

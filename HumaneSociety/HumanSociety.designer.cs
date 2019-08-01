@@ -182,7 +182,9 @@ namespace HumaneSociety
 				return this.GetTable<Shot>();
 			}
 		}
-	}
+
+       
+    }
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.USStates")]
 	public partial class USState : INotifyPropertyChanging, INotifyPropertyChanged
