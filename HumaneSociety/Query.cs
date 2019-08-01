@@ -8,6 +8,8 @@ namespace HumaneSociety
 {
     public static class Query
     {
+         
+
         static HumanSocietyDataContext db;
 
         static Query()
@@ -188,10 +190,10 @@ namespace HumaneSociety
             MyTable.SubmitChanges();
         }
 
-        internal static Animal GetAnimalByID(int id)
+        internal static Animal GetAnimalByID(int AnimalId)
         {
             var db = new HumanSocietyDataContext();
-            var animalResult = db.Animals.Where(a => a.id == id).FirstOrDefault();
+            var animalResult = db.Animals.Where(a => a.AnimalId == AnimalId).FirstOrDefault();
             return animalResult;
         }
 
@@ -205,18 +207,16 @@ namespace HumaneSociety
             }
         }
 
-        internal static void RemoveAnimal(Animal animal)
+/*
+        internal static Animal RemoveAnimal(int AnimalId)
         {
             HumanSocietyDataContext MyTable = new HumanSocietyDataContext();
 
-            var animalShotsToDelete = MyTable.AnimalShots.Where(a => a.Animal == animal.ID);
-            foreach (AnimalShot shot in animalShotsToDelete)
-            {
-                MyTable.AnimalShots.DeleteOnSubmit(shot);
-            }
+      
 
         }
-
+        
+*/
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
@@ -224,16 +224,22 @@ namespace HumaneSociety
         }
 
         // TODO: Misc Animal Things
-        internal static int GetCategoryId(string categoryName)
+        internal static Category GetCategoryId(int CategoryId)
         {
-            throw new NotImplementedException();
+
+            var db = new HumanSocietyDataContext();
+            var animalResult = db.Categories.Where(a => a.CategoryId == CategoryId).FirstOrDefault();
+            return animalResult;
+
         }
 
         internal static Room GetRoom(int animalId)
         {
+
             var db = new HumanSocietyDataContext();
             var animalResult = db.Rooms.Where(a => a.AnimalId == animalId).FirstOrDefault();
             return animalResult;
+
         }
 
         internal static int GetDietPlanId(string dietPlanName)
@@ -288,7 +294,7 @@ namespace HumaneSociety
         {
             var db = new HumanSocietyDataContext();
             var shot = new Shot();
-            shot.name = name;
+            shot.Name = name;
 
             db.Shots.InsertOnSubmit(shot);
 
