@@ -169,6 +169,14 @@ namespace HumaneSociety
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
             Func<Employee, Employee> queryMethod;
+            switch (crudOperation)
+            {
+                case "1":
+                 GetAnimalByID 
+
+            }
+
+
 
         }
 
