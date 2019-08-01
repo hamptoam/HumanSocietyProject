@@ -169,14 +169,6 @@ namespace HumaneSociety
         internal static void RunEmployeeQueries(Employee employee, string crudOperation)
         {
             Func<Employee, Employee> queryMethod;
-            switch (crudOperation)
-            {
-                case "1":
-                 GetAnimalByID 
-
-            }
-
-
 
         }
 
@@ -207,21 +199,34 @@ namespace HumaneSociety
             }
         }
 
-
-        internal static bool RemoveAnimal(int AnimalId)
+        /*
+        internal static void RemoveAnimal(int AnimalId)
         {
             HumanSocietyDataContext MyTable = new HumanSocietyDataContext();
+            int a = AnimalId;
+            //  db.Adoptions.Where(a => a.approvalStatus == "isAdopted");
+
+            var result = Where(a.approvalStatus => "isAdopted")
+            {
+                a.Remove();
+            }
+            Console.WriteLine(result);
 
 
-      
-
+            Animal animalToDelete = new Animal() {ID = AnimalId};
+            db.(AnimalId)."isAdopted" = AnimalId.Deleted;
         }
-        
+        */
 
+    
+        
+        
         // TODO: Animal Multi-Trait Search
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
             throw new NotImplementedException();
+
+            //dana doing this one 
         }
 
         // TODO: Misc Animal Things
@@ -254,29 +259,42 @@ namespace HumaneSociety
 
         // TODO: Adoption CRUD Operations
 
-            /*
-        internal static void Adopt(Animal animal, Client client)
+            
+       /* internal static void Adopt(Animal animal, Client client)
         {
             var db = new HumanSocietyDataContext();
             var ad = new Adoption();
 
             animal = GetAnimalByID();
+            client = GetClient(); */
 
-            var animalResult = db.Rooms.Where(a => a.AnimalId == AnimalId).FirstOrDefault();
-        }
+            internal static void Adopt(Animal animal, Client client)
+            {
+                var adoption = new Adoption();
+                Adoption.animal = animal.ID;
+                Adoption.client = client.ClientId;
+                var db = new HumanSocietyDataContext();
+                db.Adoptions.InsertOnSubmit(adoption);
+                db.SubmitChanges();
+                
+            }
 
-        */
+        
+
+        
 
         internal static IQueryable<Adoption> GetPendingAdoptions()
         {
+
             throw new NotImplementedException();
+
         }
 
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
+            //amelia do this 
+            
 
-
-           /* RemoveAnimal(); */
 
             
         }
