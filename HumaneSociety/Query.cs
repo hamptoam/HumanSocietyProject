@@ -296,43 +296,37 @@ namespace HumaneSociety
         {
             HumanSocietyDataContext MyTable = new HumanSocietyDataContext();
 
-          //  var animalToDelete = MyTable.Animals.Where(a => a.AnimalId == AnimalId);
+            var animalToDelete = MyTable.Animals.Where(a => a.AnimalId == AnimalId);
             MyTable.Animals.DeleteOnSubmit(animal);
 
         }
-        
+
         // TODO: Animal Multi-Trait Search
 
         internal static IQueryable<Animal> SearchForAnimalsByMultipleTraits(Dictionary<int, string> updates) // parameter(s)?
         {
-            throw new NotImplementedException();
+            
 
             //dana doing this one 
         }
 
         // TODO: Misc Animal Things
-        internal static int GetCategoryId(string categoryName)
+        internal static Category GetCategoryId(int CategoryId)
         {
-            throw new NotImplementedException();
-        }
+            var db = new HumanSocietyDataContext();
+            var CategoryResult  = db.Categories.Where(a => a.CategoryId == CategoryId).FirstOrDefault();
+            return CategoryResult;
+        } //fixed
 
         internal static Room GetRoom(int animalId)
         {
 
             var db = new HumanSocietyDataContext();
-            var animalResult = db.Rooms.Where(a => a.AnimalId == animalId).FirstOrDefault();
-            return animalResult;
+            var RoomResult = db.Rooms.Where(a => a.AnimalId == animalId).FirstOrDefault();
+            return RoomResult;
 
         }
 
-        /*
-        internal static Animal GetDietPlanId(string dietPlanName)
-        {
-            throw new NotImplementedException();
-            //var db = new HumanSocietyDataContext();
-            //var newDietPlan = db.DietPlan.Where(n => n.dietPlanName == dietPlanName).FirstOrDefault();
-            //return newDietPlan;
-        */
         internal static int GetDietPlanId(int DietPlanId)
         {
 
@@ -340,23 +334,30 @@ namespace HumaneSociety
             var animalResult = db.DietPlans.Where(a => a.DietPlanId == DietPlanId).FirstOrDefault();
             return DietPlanId;
 
-
         }
 
         // TODO: Adoption CRUD Operations
 
             
-
-           internal static void Adopt(Animal animal, Client client)
+            public delegate void GetAnimalByIdPtr();
+            public delegate void GetClientByIdPtr();
+           internal static Adoption Adopt(Animal animal, Client client)
             {
+
                 var adoption = new Adoption();
-        //        Adoption.animal = animal.AnimalId;
-          //      Adoption.client = client.ClientId;
+                var animal = new Animal();
+                var client = new Client();
+
+
+                Animal GetAnimalByIdPtr = new GetAnimalByIdPtr(GetAnimalById();
+                object inkvoke();
+            
+            
                 var db = new HumanSocietyDataContext();
                 db.Adoptions.InsertOnSubmit(adoption);
                 db.SubmitChanges();
-              
-        
+                set { Adoption.ApprovalStatus == "Adopted" };
+                
             }
             
         
@@ -368,37 +369,70 @@ namespace HumaneSociety
             return db.Adoptions.Where(c => c.ApprovalStatus == "pending");
         }
 
+        internal static IQueryable<Adoption> GetApprovedAdoptions()
+        {
+            var db = new HumanSocietyDataContext();
+            return db.Adoptions.Where(c => c.ApprovalStatus == "approved");
+
+        }
+
+        internal static IQueryable<Adoption> GetDeniedAdoptions()
+        {
+            var db = new HumanSocietyDataContext();
+            return db.Adoptions.Where(c => c.ApprovalStatus == "denied");
+
+        }
+
+        
+
         internal static void UpdateAdoption(bool isAdopted, Adoption adoption)
         {
 
+         //   Adoption.ApprovalStatus == "denied"; ? 
             var db = new HumanSocietyDataContext();
             Adoption adoptionResult = db.Adoptions.Where(c => c.AdoptionFee == adoption.AnimalId).First();
            
             db.SubmitChanges();
 
-           /* RemoveAnimal(); */
-
         }
 
         internal static void RemoveAdoption(int animalId, int clientId)
         {
-            throw new NotImplementedException();
+            var db = new HumanSocietyDataContext();
+         //   foreach (animalId in Animal)
+            {
+
+
+
+                
+
+
+
+
+
+
+            }
+
         }
 
-        //TODO: Shots Stuff
-        //internal static IQueryable<AnimalShot> GetShots(Animal animal)
-        //{
-        //    IQueryable<AnimalShot> results;
-        //    var db = new HumanSocietyDataContext();
-        //    results = db.Animals.Where(a => a.Animal == animal.).ToList();
-        //     return results;
-        //}
 
+        /*
+        //TODO: Shots Stuff
+        internal static IQueryable<AnimalShot> GetShots(Animal animal)
+        {
+            var db = new HumanSocietyDataContext();
+
+
+            results = db.Animals.Where(c => c.AnimalId == Animal.AnimalId).ToList();
+            return results;
+
+        }
+
+        */
         internal static void UpdateShot(string shotName, Animal animal)
         {
             var db = new HumanSocietyDataContext();
             var shot = new Shot();
-
 
         }
         public static void AddNewShot(string name)
